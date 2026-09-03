@@ -6,8 +6,15 @@ coding agent on any model.
 ## Install
 
 ```sh
-brew install llmmanorg/tap/llmman
+brew tap llmmanorg/tap
+brew trust llmmanorg/tap
+brew install llmman
 ```
+
+The `brew trust` step is required because current Homebrew refuses to
+load formulae from third-party taps until you explicitly trust them;
+without it, `brew install` stops with `Refusing to load formula ... from
+untrusted tap`.
 
 Supported platforms (these are the platforms llmman publishes builds for):
 
@@ -27,7 +34,7 @@ passes CI on `main` — the same channel `install.sh` uses — install
 `llmman-dev`:
 
 ```sh
-brew install llmmanorg/tap/llmman-dev
+brew install llmman-dev
 ```
 
 The two are separate formulae on purpose: Homebrew orders upgrades by
