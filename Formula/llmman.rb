@@ -7,7 +7,7 @@
 class Llmman < Formula
   desc "Run any agent on any model, models stored as OCI images"
   homepage "https://github.com/llmmanorg/llmman"
-  version "0.1.325"
+  version "0.1.326"
   license "Apache-2.0"
 
   # Bare binaries, not tarballs, so Homebrew cannot infer the version from
@@ -17,18 +17,18 @@ class Llmman < Formula
     # clear Homebrew error instead of a 404.
     depends_on arch: :arm64
 
-    url "https://github.com/llmmanorg/llmman/releases/download/v0.1.325/llmman-aarch64-apple-darwin"
-    sha256 "a0723e5e161ff9c1aef3356592c09b81e1c479af3314371eed56ab3ea1e9e352"
+    url "https://github.com/llmmanorg/llmman/releases/download/v0.1.326/llmman-aarch64-apple-darwin"
+    sha256 "a3545008746f49b3787c0a722ea905440f597084c2c9ccf1b75fc836712a05d6"
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.325/llmman-x86_64-unknown-linux-gnu"
-      sha256 "048ff14e61f5f174c419a060320c21c507a70b272fe9bc84375c385bfbb168c8"
+      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.326/llmman-x86_64-unknown-linux-gnu"
+      sha256 "9dc5c948dd0c47bb14e99e3480ae60318a498da95fadb3aa214d21e69f3b63dd"
     end
     on_arm do
-      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.325/llmman-aarch64-unknown-linux-gnu"
-      sha256 "5175e5114b2dda5933ecd0663a46b818105b5a9b60275823d4b31a0b47e5626b"
+      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.326/llmman-aarch64-unknown-linux-gnu"
+      sha256 "30c3151fca060592f7717ed7deafb5770b609e9e0ad02c786ff65fa196b43942"
     end
   end
 
