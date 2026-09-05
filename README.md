@@ -1,22 +1,18 @@
 # llmmanorg/homebrew-tap
 
 Homebrew tap for [llmman](https://github.com/llmmanorg/llmman) — run any
-coding agent on any model.
+agent on any model, models stored as OCI images.
 
 ## Install
 
 ```sh
-brew tap llmmanorg/tap
-brew trust llmmanorg/tap
-brew install llmman
+brew install llmmanorg/tap/llmman
 ```
 
-The `brew trust` step is required because current Homebrew refuses to
-load formulae from third-party taps until you explicitly trust them;
-without it, `brew install` stops with `Refusing to load formula ... from
-untrusted tap`.
+The fully-qualified name does the `brew tap` for you and trusts just this
+formula (Homebrew does not load formulae from third-party taps otherwise).
 
-Supported platforms (these are the platforms llmman publishes builds for):
+Supported platforms (the platforms llmman publishes builds for):
 
 | Platform | Architecture |
 |---|---|
@@ -25,26 +21,18 @@ Supported platforms (these are the platforms llmman publishes builds for):
 | Linux | `aarch64` |
 
 Intel macOS is not supported — llmman publishes no `x86_64-apple-darwin`
-build. Build from source instead; see the main repo's README.
+build. `cargo install llmman` builds from source there (needs Rust and Go).
 
-## Tracking `main` instead of releases
+## Versions
 
-`llmman` follows stable `v*` releases. To instead track every commit that
-passes CI on `main` — the same channel `install.sh` uses — install
-`llmman-dev`:
+Every commit that passes CI on llmman's `main` is a release, versioned
+`MAJOR.MINOR.<commit count>` (e.g. `0.1.324`), and this formula is updated
+to it within minutes. `brew upgrade llmman` therefore tracks `main`; there
+is no separate stable channel.
 
-```sh
-brew install llmman-dev
-```
+## This formula is generated
 
-The two are separate formulae on purpose: Homebrew orders upgrades by
-comparing version strings, and the two channels' versions are not
-mutually comparable, so a single formula serving both would let one
-permanently shadow the other. Install one or the other, not both.
-
-## These formulae are generated
-
-Both formulae are rendered by
+`Formula/llmman.rb` is rendered by
 [`packaging/render.sh`](https://github.com/llmmanorg/llmman/blob/main/packaging/render.sh)
 in the main repo and pushed here by its CI on every release. **Edits made
 directly in this repo are overwritten by the next release** — change
