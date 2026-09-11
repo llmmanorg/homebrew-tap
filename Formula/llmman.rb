@@ -7,7 +7,7 @@
 class Llmman < Formula
   desc "Run any agent on any model, models stored as OCI images"
   homepage "https://github.com/llmmanorg/llmman"
-  version "0.1.390"
+  version "0.1.391"
   license "Apache-2.0"
 
   # Bare binaries, not tarballs, so Homebrew cannot infer the version from
@@ -17,35 +17,24 @@ class Llmman < Formula
     # clear Homebrew error instead of a 404.
     depends_on arch: :arm64
 
-    url "https://github.com/llmmanorg/llmman/releases/download/v0.1.390/llmman-aarch64-apple-darwin"
-    sha256 "452731e27973ecd5f4eae0da5bc6246d89f5991b4711f87e8f0fab1bfbbc90d5"
+    url "https://github.com/llmmanorg/llmman/releases/download/v0.1.391/llmman-aarch64-apple-darwin"
+    sha256 "c3b8c1b46a8eec45af08ed0758462eb703f2b153a23e6bf550b74d135c9aa72f"
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.390/llmman-x86_64-unknown-linux-gnu"
-      sha256 "85ddb4a8d7cd9403573e2febaa2c092ccdc7ea2261be8c734a4d921c758ba571"
+      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.391/llmman-x86_64-unknown-linux-gnu"
+      sha256 "b5d1e2538b77ac9a57a1baa09e55bdc49a6cc14c0d8ddf99e0724bc62f02d175"
     end
     on_arm do
-      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.390/llmman-aarch64-unknown-linux-gnu"
-      sha256 "c5426d3bf9118cdfbf4bf6506a7094852ca574731effe3b2cf262d68f7a45ba4"
+      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.391/llmman-aarch64-unknown-linux-gnu"
+      sha256 "47f756d691f3e02387dac13bd3a292fb05d1e7b5df14b337d6d3372d2a13ec3c"
     end
   end
 
   def install
     # The staged file keeps its llmman-<triple> asset name.
     bin.install Dir["llmman-*"].first => "llmman"
-  end
-
-  def caveats
-    <<~EOS
-      llmman downloads a llama.cpp build matching your GPU on first use. To
-      get started:
-
-        llmman launch claude --model qwen3.8
-
-      Models and cached llama.cpp builds live under ~/.local/share/llmman.
-    EOS
   end
 
   test do
