@@ -7,7 +7,7 @@
 class Llmman < Formula
   desc "Run any agent on any model, models stored as OCI images"
   homepage "https://github.com/llmmanorg/llmman"
-  version "0.1.412"
+  version "0.1.414"
   license "Apache-2.0"
 
   # Bare binaries, not tarballs, so Homebrew cannot infer the version from
@@ -17,24 +17,37 @@ class Llmman < Formula
     # clear Homebrew error instead of a 404.
     depends_on arch: :arm64
 
-    url "https://github.com/llmmanorg/llmman/releases/download/v0.1.412/llmman-aarch64-apple-darwin"
-    sha256 "aac08af7611a33d0e197e93ec0e3f2989199504f2ced7bfb0200f1d17eebf682"
+    url "https://github.com/llmmanorg/llmman/releases/download/v0.1.414/llmman-aarch64-apple-darwin"
+    sha256 "a96806c587f53eda766976969df156ae47a6db7a21d9977f12be03246048d2f5"
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.412/llmman-x86_64-unknown-linux-gnu"
-      sha256 "3dfe9b9e579f05b8a66ce6c202ed44f60fb22bdaaf4b31041a96ebc2fb5cc1b1"
+      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.414/llmman-x86_64-unknown-linux-gnu"
+      sha256 "fb989553c0efb5cf426bca236821646c8119ebed628c4b6a7e490e5d6b057b71"
     end
     on_arm do
-      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.412/llmman-aarch64-unknown-linux-gnu"
-      sha256 "015f255547e216b7ac319ed6d125c2d554342e4dd3e569a20842e27a6d90b1b1"
+      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.414/llmman-aarch64-unknown-linux-gnu"
+      sha256 "33851afedd6352da2ab9d9424b5ec4c4693ce2669a4331eb1cedfe4a79013c42"
     end
   end
 
   def install
     # The staged file keeps its llmman-<triple> asset name.
     bin.install Dir["llmman-*"].first => "llmman"
+  end
+
+  # `serve` runs in the foreground and logs to stderr, so launchd/systemd
+  # can own it directly. See README.md for usage.
+  service do
+    run [opt_bin/"llmman", "serve"]
+    keep_alive true
+    # Launchd's default PATH omits the Homebrew prefix, where docker/podman
+    # and llama-server usually live.
+    environment_variables PATH: std_service_path_env
+    working_dir var
+    log_path var/"log/llmman.log"
+    error_log_path var/"log/llmman.log"
   end
 
   test do
