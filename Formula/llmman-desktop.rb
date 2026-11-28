@@ -4,7 +4,7 @@
 class LlmmanDesktop < Formula
   desc "Tray icon that opens llmman's web UI and keeps a local llmman serve running"
   homepage "https://github.com/llmmanorg/llmman"
-  version "0.1.726"
+  version "0.1.728"
   license "Apache-2.0"
 
   depends_on :linux
@@ -12,12 +12,12 @@ class LlmmanDesktop < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.726/llmman-desktop-x86_64-unknown-linux-gnu"
-      sha256 "eb2b642d1e263bbb00a6ba68c97d97f7a6bead7575ad737b73953eccc553e205"
+      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.728/llmman-desktop-x86_64-unknown-linux-gnu"
+      sha256 "08291c174b8e484cdbfffbfc9a3f169a2eb9f6735e57d66255403a86a145149c"
     end
     on_arm do
-      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.726/llmman-desktop-aarch64-unknown-linux-gnu"
-      sha256 "3b280e3acc4fdf4bd69b3e4af84855480025c78e7ec1487da154027e851c466d"
+      url "https://github.com/llmmanorg/llmman/releases/download/v0.1.728/llmman-desktop-aarch64-unknown-linux-gnu"
+      sha256 "5b8c0ae2de076ae3cee77f7571da35a4c8dd9867416f19c393c2807ca181ba75"
     end
   end
 
